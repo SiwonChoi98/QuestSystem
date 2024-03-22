@@ -6,5 +6,6 @@ using UnityEngine;
 public class QuestObject : ScriptableObject
 {
     public QuestData Data = new QuestData();
+    
     public QuestStatusType QuestStatusType;
 }
