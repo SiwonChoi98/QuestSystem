@@ -9,31 +9,29 @@ public class QuestNPC : MonoBehaviour
 
     private void Start()
     {
-        //퀘스트 끝났는지 이벤트
+        AddQuestEvent();
+    }
+
+    private void OnDestroy()
+    {
+        RemoveQuestEvent();
+    }
+
+    //퀘스트 이벤트 등록
+    private void AddQuestEvent()
+    {
         QuestManager.Instance.OnCompletedQuest += OnCompletedQuest;
     }
+    //퀘스트 이벤트 해제
+    private void RemoveQuestEvent()
+    {
+        QuestManager.Instance.OnCompletedQuest -= OnCompletedQuest;
+    }
     
+    //상호작용
     public void Interact(GameObject gameObject)
     {
-        //퀘스트 상태가 None 일때 
-        if (QuestObject.QuestStatusType == QuestStatusType.None)
-        {
-            //수락
-            QuestObject.QuestStatusType = QuestStatusType.Completed;
-        }
-        //수락 상태
-        else if (QuestObject.QuestStatusType == QuestStatusType.Accepted)
-        {
-            
-        }
-        //완료 상태
-        else if (QuestObject.QuestStatusType == QuestStatusType.Completed)
-        {
-            //reward
-            
-            //보상 받은 상태로 변경
-            QuestObject.QuestStatusType = QuestStatusType.Rewarded;
-        }
+        QuestManager.Instance.UpdateQuestStatus(QuestObject);
     }
     
     private void OnCompletedQuest(QuestObject questObject)

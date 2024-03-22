@@ -31,4 +31,24 @@ public class QuestManager : Singleton<QuestManager>
             }
         }
     }
+
+    //퀘스트 상태 업데이트
+    public void UpdateQuestStatus(QuestObject questObject)
+    {
+        switch (questObject.QuestStatusType)
+        {
+            case QuestStatusType.None:
+                questObject.QuestStatusType = QuestStatusType.Completed;
+                break;
+            case QuestStatusType.Accepted:
+                break;
+            case QuestStatusType.Completed:
+                //reward
+                questObject.QuestStatusType = QuestStatusType.Rewarded;
+                break;
+            case QuestStatusType.Rewarded:
+                break;
+                
+        }
+    }
 }
