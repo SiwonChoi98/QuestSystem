@@ -19,3 +19,15 @@ public enum RewardType
     //재화
     Gold
 }
+
+public enum QuestStatusType
+{
+    //안받은 상태
+    None,
+    //수락한 상태
+    Accepted,
+    //완료 상태
+    Completed,
+    //보상 받은 상태
+    Rewarded
+}
